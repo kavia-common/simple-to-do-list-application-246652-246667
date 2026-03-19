@@ -3,6 +3,9 @@ import App from './App';
 
 test('renders app title', () => {
     render(<App />);
-    const title = screen.getByText(/retro to-do/i);
+
+    // The UI title uses a non-breaking hyphen (U+2011): "Retro To‑Do".
+    // Match either "-" or "‑" so the test is resilient to typography changes.
+    const title = screen.getByText(/retro to[-‑]do/i);
     expect(title).toBeInTheDocument();
 });
